@@ -16,23 +16,23 @@ makeDir() {
 
 #-------------------------------------------------------------------------------
 copyFiles() {
-    makeDir $TARGET/weinre-builds/bin
-    makeDir $TARGET/weinre-builds/doc
-    makeDir $TARGET/weinre-builds/src
-    makeDir $TARGET/weinre-docs/latest
+    makeDir weinre-builds/bin
+    makeDir weinre-builds/doc
+    makeDir weinre-builds/src
+    makeDir weinre-docs/latest
     
-    rm -rf $TARGET/weinre-docs/latest/*
+    rm -rf weinre-docs/latest/*
     
-    cp $SOURCE/*-bin.tar.gz $TARGET/weinre-builds/bin
-    cp $SOURCE/*-bin.zip    $TARGET/weinre-builds/bin
+    cp $SOURCE/*-bin.tar.gz weinre-builds/bin
+    cp $SOURCE/*-bin.zip    weinre-builds/bin
 
-    cp $SOURCE/*-doc.tar.gz $TARGET/weinre-builds/doc
-    cp $SOURCE/*-doc.zip    $TARGET/weinre-builds/doc
+    cp $SOURCE/*-doc.tar.gz weinre-builds/doc
+    cp $SOURCE/*-doc.zip    weinre-builds/doc
 
-    cp $SOURCE/*-src.tar.gz $TARGET/weinre-builds/src
-    cp $SOURCE/*-src.zip    $TARGET/weinre-builds/src
+    cp $SOURCE/*-src.tar.gz weinre-builds/src
+    cp $SOURCE/*-src.zip    weinre-builds/src
     
-    cp -R $SOURCE/doc/     $TARGET/weinre-docs/latest/
+    cp -R $SOURCE/doc/      weinre-docs/latest/
 }
 
 #-------------------------------------------------------------------------------
