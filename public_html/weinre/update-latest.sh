@@ -18,22 +18,26 @@ makeDir() {
 #-------------------------------------------------------------------------------
 copyFiles() {
 
-    makeDir weinre-builds/$VERSION
-    makeDir weinre-docs/latest
+    makeDir builds/$VERSION
+    makeDir docs/latest
     
-    rm -rf weinre-docs/latest/*
+    echo "removing old docs/latest/*"
+    rm -rf docs/latest/*
     
-    cp $SOURCE/*-bin.tar.gz weinre-builds/$VERSION
-    cp $SOURCE/*-bin.zip    weinre-builds/$VERSION
+    echo "copying archives to $VERSION"
+    cp $SOURCE/*-bin.tar.gz builds/$VERSION
+    cp $SOURCE/*-bin.zip    builds/$VERSION
 
-    cp $SOURCE/*-doc.tar.gz weinre-builds/$VERSION
-    cp $SOURCE/*-doc.zip    weinre-builds/$VERSION
+    cp $SOURCE/*-doc.tar.gz builds/$VERSION
+    cp $SOURCE/*-doc.zip    builds/$VERSION
 
-    cp $SOURCE/*-src.tar.gz weinre-builds/$VERSION
-    cp $SOURCE/*-src.zip    weinre-builds/$VERSION
+    cp $SOURCE/*-src.tar.gz builds/$VERSION
+    cp $SOURCE/*-src.zip    builds/$VERSION
     
-    cp -R $SOURCE/doc/      weinre-docs/latest/
+    echo "copying doc to docs/latest"
+    cp -R $SOURCE/doc/      docs/latest/
     
+    echo "writing $VERSION/.htaccess"
     (
     cat <<EOF
 HeaderName  ../index-header.html
@@ -48,7 +52,7 @@ AddDescription "file hash"             *.SHA1
 AddDescription "PGP signature"         *.asc
 AddDescription "PGP/GPG keys"          KEYS
 EOF
-    ) > weinre-builds/$VERSION/.htaccess
+    ) > builds/$VERSION/.htaccess
 }
 
 #-------------------------------------------------------------------------------
