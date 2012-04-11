@@ -3,6 +3,7 @@
 PROGRAM=`basename $0`
 TARGET=`dirname $0`
 SOURCE=$1/weinre.build/out/archives
+VERSION=`cat $SOURCE/../version.txt`
 
 #-------------------------------------------------------------------------------
 makeDir() {
@@ -16,23 +17,38 @@ makeDir() {
 
 #-------------------------------------------------------------------------------
 copyFiles() {
-    makeDir weinre-builds/bin
-    makeDir weinre-builds/doc
-    makeDir weinre-builds/src
+
+    makeDir weinre-builds/$VERSION
     makeDir weinre-docs/latest
     
     rm -rf weinre-docs/latest/*
     
-    cp $SOURCE/*-bin.tar.gz weinre-builds/bin
-    cp $SOURCE/*-bin.zip    weinre-builds/bin
+    cp $SOURCE/*-bin.tar.gz weinre-builds/$VERSION
+    cp $SOURCE/*-bin.zip    weinre-builds/$VERSION
 
-    cp $SOURCE/*-doc.tar.gz weinre-builds/doc
-    cp $SOURCE/*-doc.zip    weinre-builds/doc
+    cp $SOURCE/*-doc.tar.gz weinre-builds/$VERSION
+    cp $SOURCE/*-doc.zip    weinre-builds/$VERSION
 
-    cp $SOURCE/*-src.tar.gz weinre-builds/src
-    cp $SOURCE/*-src.zip    weinre-builds/src
+    cp $SOURCE/*-src.tar.gz weinre-builds/$VERSION
+    cp $SOURCE/*-src.zip    weinre-builds/$VERSION
     
     cp -R $SOURCE/doc/      weinre-docs/latest/
+    
+    (
+    cat <<EOF
+HeaderName  ../index-header.html
+AddDescription "binary archive"        *-bin.tar.gz
+AddDescription "binary archive"        *-bin.zip
+AddDescription "source archive"        *-src.tar.gz
+AddDescription "source archive"        *-src.zip
+AddDescription "documentation archive" *-doc.tar.gz
+AddDescription "documentation archive" *-doc.zip
+AddDescription "file hash"             *.MD5
+AddDescription "file hash"             *.SHA1
+AddDescription "PGP signature"         *.asc
+AddDescription "PGP/GPG keys"          KEYS
+EOF
+    ) > weinre-builds/$VERSION/.htaccess
 }
 
 #-------------------------------------------------------------------------------
