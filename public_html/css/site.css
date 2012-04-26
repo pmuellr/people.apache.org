@@ -59,16 +59,17 @@ code {
 }
 
 /*-----------------------------------------------------------------*/
-pre, xmp {
+pre, xmp, blockquote {
     overflow:           auto;
     border-width:       thin;
-    border-style:       dotted;
+    border-style:       solid;
     padding-top:        0.4em;
     padding-bottom:     0.4em;
     padding-left:       1.4em;
     padding-right:      1.4em;
     margin-left:        1.4em;
     margin-right:       1.4em;
+    border-radius:      0.5em;
 }
 
 /*-----------------------------------------------------------------*/

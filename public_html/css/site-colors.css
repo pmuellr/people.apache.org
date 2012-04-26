@@ -9,8 +9,8 @@ body {
 }
 
 /*-----------------------------------------------------------------*/
-pre, xmp {
-	border-color:       #DDD;
+pre, xmp, blockquote {
+	border-color:       #BBB;
 	background:         #FFE;
 	color:              #000;
 }
